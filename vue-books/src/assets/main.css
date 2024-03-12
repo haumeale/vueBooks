@@ -6,7 +6,5 @@ body{
   background-image: url("@/assets/star2.jpg");
   background: cover;
   background-size: cover;
-  /* backdrop-filter: blur(1px); */
- 
-
+  
 }
