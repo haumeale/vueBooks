@@ -1,6 +1,10 @@
 <script setup>
 import CardVue from './CardVue.vue';
 
+defineProps({
+    items: Array
+})
+
 const onClickAdd = () => {
     alert('You have added an item to your cart!')
 }
@@ -9,20 +13,15 @@ const onClickAdd = () => {
 
 <template>
     <div class="grid grid-cols-4 gap-5">
-        <CardVue title="Фрэнсис Бёрнетт: Таинственный сад" 
-        imageUrl="/src/assets/books1.jpeg" 
-        :price="888" 
-        :is-added="true" 
-        :isFavorite="true" 
+        <CardVue
+        v-for="item in items"
+        :key="item.id"
+         :title="item.title" 
+        :imageUrl="item.imageUrl" 
+        :price="item.price" 
         :onClickAdd="onClickAdd"
         />
-        <CardVue />
-        <CardVue />
-        <CardVue />
-        <CardVue />
-        <CardVue />
-        <CardVue />
-        <CardVue />
+       
 
     </div>
 </template>
