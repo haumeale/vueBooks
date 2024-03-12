@@ -8,11 +8,7 @@ import DrawerVue from './components/DrawerVue.vue';
 
 const items = ref([])
 
-const searchQuery = ref('')
 
-const onChangeSearchInput = (event) => {
-    
-}
 
 onMounted( async () => {
     try {
@@ -36,7 +32,7 @@ onMounted( async () => {
         <div class="relative">
             <img class="absolute left-4 top-3" src="/src/assets/search.svg" alt="">
             <input
-            @input="onChangeSearchInput"
+            
              class="border rounded-md py-2 pl-12 pr-4 outline-none bg-violet-200 focus:border-violet-300" placeholder="Search...">
         </div>
         </div>
