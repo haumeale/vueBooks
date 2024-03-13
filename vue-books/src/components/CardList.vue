@@ -2,11 +2,14 @@
 import CardVue from './CardVue.vue';
 
 defineProps({
-    items: Array
+    items: Array,  
 })
+
+const emit = defineEmits(['addToFavorite'])
 
 const onClickAdd = () => {
     alert('You have added an item to your cart!')
+    emit('addToFavorite', item)
 }
 
 </script>
@@ -19,7 +22,10 @@ const onClickAdd = () => {
          :title="item.title" 
         :imageUrl="item.imageUrl" 
         :price="item.price" 
+        :id="item.id"
         :onClickAdd="onClickAdd"
+        :isFavorite="item.isFavorite"
+        :onClickFavorite="() => emit('addToFavorite', item)"
         />
        
 
