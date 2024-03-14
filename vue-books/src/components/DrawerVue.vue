@@ -1,6 +1,11 @@
  <script setup>
  import DrawerHead from './DrawerHead.vue';
  import CartItemList from './CartItemList.vue';
+
+ defineProps({
+    totalPrice: Number
+ })
+
 </script>
  
  <template>
@@ -13,7 +18,7 @@
             <div class="flex gap-2">
                 <span>Sum total</span>
                 <div class="flex-1 border-b border-dashed" ></div>
-                <b>888 ₽</b>
+                <b>{{ totalPrice }} ₽</b>
             </div>
             <button
         disabled=""
