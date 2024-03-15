@@ -174,7 +174,7 @@ provide('cart', {
  
 <template>
     <DrawerVue v-if="drawerOpen" :total-price="totalPrice" @create-order="createOrder" :button-disable="cartButtonDisable"/>
-    <div class="bg-[#ddd6fe] w-4/5 m-auto min-h-screen rounded-xl shadow-xl mt-14">
+    <div class="bg-[#ede9fe] w-4/5 m-auto min-h-screen rounded-xl shadow-xl mt-14">
     <HeaderVue :total-price="totalPrice" @open-drawer="openDrawer" />
 
     <div class="p-10">
@@ -182,14 +182,14 @@ provide('cart', {
         <h2 class="text-3xl font-bold mb-8">All books</h2>
 
            <div class="flex gap-5">
-        <select @change="onChangeSelect" class="py-2 px-3 border rounded-md focus:border-violet-300 outline-none bg-[#ddd6fe]">
+        <select @change="onChangeSelect" class="py-2 px-3 border rounded-md focus:border-violet-300 outline-none bg-violet-100">
             <option value="name">By name</option>
         </select>
         <div class="relative">
             <img class="absolute left-4 top-3" src="/src/assets/search.svg" alt="">
             <input
             @input="onChangeSearch"
-             class="border rounded-md py-2 pl-12 pr-4 outline-none bg-violet-200 focus:border-violet-300" placeholder="Search...">
+             class="border rounded-md py-2 pl-12 pr-4 outline-none bg-violet-100 focus:border-violet-300" placeholder="Search...">
         </div>
         </div>
         </div>

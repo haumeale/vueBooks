@@ -15,7 +15,7 @@ defineProps({
 
 
 <template>
-     <div class="relative bg-[#ddd6fe] border border-violet-300 rounded-3xl p-8 pb-4 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl">
+     <div class="relative bg-[#ede9fe] border border-violet-200 rounded-3xl p-8 pb-4 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl">
         <img :src="!isFavorite ? '/src/assets/like-1.svg' : '/src/assets/like-2.svg' " alt="" class="absolute top-8 left-8 " @click="onClickFavorite">
         <img :src="imageUrl" alt="">
         <p class="mt-2">{{ title }}</p>
