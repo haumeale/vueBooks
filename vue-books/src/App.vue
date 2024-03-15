@@ -9,11 +9,18 @@ import DrawerVue from './components/DrawerVue.vue';
 const items = ref([])
 const cart = ref([])
 
+const isCreatingOrder = ref(false)
+
 const drawerOpen = ref(false)
 
 const totalPrice = computed(
     () => cart.value.reduce((acc, item) => acc + item.price, 0)
 )
+
+const cartIsEmpty = computed(() => cart.value.length === 0)
+
+const cartButtonDisable = computed(() => 
+isCreatingOrder.value || cartIsEmpty.value)
 
 const closeDrawer = () => {
     drawerOpen.value = false
@@ -36,6 +43,23 @@ const addToCart = (item) => {
 const removeFromCart = (item) => {
     cart.value.splice(cart.value.indexOf(item), 1)
         item.isAdded = false
+}
+
+const createOrder = async () =>  {
+try {
+    const { data } = await axios.post(`https://f4a0b45a3cfbddec.mokky.dev/orders`, {
+        items: cart.value,
+        totalPrice: totalPrice.value,
+
+    })
+    cart.value = []
+    return data
+}  catch (err){
+    console.log(err)
+
+} finally {
+    isCreatingOrder.value = false
+}
 }
 
 const onClickAddPlus = (item) => {
@@ -131,6 +155,13 @@ onMounted( async () => {
 )
 watch(filters, fetchItems)
 
+watch(cart, () => {
+    items.value = items.value.map((item) => ({
+        ...item,
+        isAdded: false
+    }))
+})
+
 provide('cart', {
     cart,
     closeDrawer,
@@ -142,7 +173,7 @@ provide('cart', {
 </script>
  
 <template>
-    <DrawerVue v-if="drawerOpen" :total-price="totalPrice"/>
+    <DrawerVue v-if="drawerOpen" :total-price="totalPrice" @create-order="createOrder" :button-disable="cartButtonDisable"/>
     <div class="bg-[#ddd6fe] w-4/5 m-auto min-h-screen rounded-xl shadow-xl mt-14">
     <HeaderVue :total-price="totalPrice" @open-drawer="openDrawer" />
 

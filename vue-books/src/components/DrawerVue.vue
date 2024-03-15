@@ -2,8 +2,11 @@
  import DrawerHead from './DrawerHead.vue';
  import CartItemList from './CartItemList.vue';
 
+ const emit = defineEmits(['createOrder'])
+
  defineProps({
-    totalPrice: Number
+    totalPrice: Number,
+    buttonDisable: Boolean
  })
 
 </script>
@@ -21,7 +24,8 @@
                 <b>{{ totalPrice }} ₽</b>
             </div>
             <button
-        disabled=""
+            @click="() => emit('createOrder')"
+        :disabled="buttonDisable"
          class="bg-violet-400 w-full disabled:bg-violet-300 rounded-xl py-3 text-white hover:bg-violet-500 active:bg-violet-600 transition cursor-pointer">
             Place an order
         </button>
